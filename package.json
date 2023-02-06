@@ -1,0 +1,16 @@
+{
+  "name": "nostr-rebroadcast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nostr-tools": "^1.2.1",
+    "websocket-polyfill": "^0.0.3"
+  }
+}
