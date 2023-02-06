@@ -27,6 +27,8 @@ const relayFromUrls = [
 
 const relayToUrl = 'TO_RELAY_URL'
 
+const eventsReceived = []
+
 relayFromUrls.forEach(async (relayUrl) => {
   const relayFrom = relayInit(relayUrl)
   await relayFrom.connect()
@@ -50,17 +52,20 @@ relayFromUrls.forEach(async (relayUrl) => {
     }
   ])
   sub.on('event', event => {
-    let myEvent = {
-      kind: event.kind,
-      pubkey: pk,
-      created_at: event.created_at,
-      tags: event.tags,
-      content: event.content,
-    }
-    myEvent.id = getEventHash(myEvent)
-    myEvent.sig = signEvent(myEvent, sk)
+    if(eventsReceived.indexOf(event.id) === -1) {
+       let myEvent = {
+        kind: event.kind,
+        pubkey: pk,
+        created_at: event.created_at,
+        tags: event.tags,
+        content: event.content,
+      }
+      myEvent.id = getEventHash(myEvent)
+      myEvent.sig = signEvent(myEvent, sk)
 
-    eventsToMove.push(myEvent)
+      eventsToMove.push(myEvent)
+      eventsReceived.push(event.id)
+    }
   })
   sub.on('eose', async () => {
     sub.unsub()
