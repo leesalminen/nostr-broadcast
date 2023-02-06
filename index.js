@@ -2,8 +2,6 @@ import 'websocket-polyfill'
 import pkg from 'nostr-tools'
 
 const relayInit = pkg.relayInit
-const getEventHash = pkg.getEventHash
-const signEvent = pkg.signEvent
 
 let sk = 'YOUR_HEX_ENCODED_PRIVATE_KEY_HERE'
 let pk = 'YOUR_HEX_ENCODED_PUBLIC_KEY_HERE'
@@ -53,17 +51,7 @@ relayFromUrls.forEach(async (relayUrl) => {
   ])
   sub.on('event', event => {
     if(eventsReceived.indexOf(event.id) === -1) {
-       let myEvent = {
-        kind: event.kind,
-        pubkey: pk,
-        created_at: event.created_at,
-        tags: event.tags,
-        content: event.content,
-      }
-      myEvent.id = getEventHash(myEvent)
-      myEvent.sig = signEvent(myEvent, sk)
-
-      eventsToMove.push(myEvent)
+      eventsToMove.push(event)
       eventsReceived.push(event.id)
     }
   })
@@ -78,6 +66,7 @@ relayFromUrls.forEach(async (relayUrl) => {
         console.log(`${relayTo.url} has accepted our event from ${relayFrom.url} on ${new Date(event.created_at * 1000).toISOString()} of kind ${event.kind} and ID ${event.id}`)
 
         if(index == eventsToMove.length - 1) {
+          console.log(`done with ${relayFrom.url}`)
           await relayFrom.close()
           await relayTo.close()
         }
