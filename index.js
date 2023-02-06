@@ -3,7 +3,6 @@ import pkg from 'nostr-tools'
 
 const relayInit = pkg.relayInit
 
-let sk = 'YOUR_HEX_ENCODED_PRIVATE_KEY_HERE'
 let pk = 'YOUR_HEX_ENCODED_PUBLIC_KEY_HERE'
 
 const relayFromUrls = [

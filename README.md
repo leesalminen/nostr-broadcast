@@ -16,7 +16,6 @@ npm install
 
 Open `index.js` with your favorite text editor and change to your values as needed.
 
-- YOUR_HEX_ENCODED_PRIVATE_KEY_HERE
 - YOUR_HEX_ENCODED_PUBLIC_KEY_HERE
 - TO_RELAY_URL
 
