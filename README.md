@@ -1,4 +1,4 @@
-# nostr-rebroadcast
+# nostr-broadcast
 
 This tool allows you to take events from one relay and publish them to another
 
@@ -9,8 +9,8 @@ You must have node.js (18) and npm installed.
 ## Steps
 
 ```
-git clone https://github.com/leesalminen/nostr-rebroadcast.git
-cd nostr-rebroadcast
+git clone https://github.com/mroxso/nostr-broadcast.git
+cd nostr-broadcast
 npm install
 ```
 
