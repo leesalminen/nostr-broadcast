@@ -3,26 +3,29 @@ import pkg from 'nostr-tools'
 
 const relayInit = pkg.relayInit
 
-let pk = 'YOUR_HEX_ENCODED_PUBLIC_KEY_HERE'
+// let pk = 'YOUR_HEX_ENCODED_PUBLIC_KEY_HERE'
+let pk = process.env.PUBLIC_KEY
 
-const relayFromUrls = [
-  'wss://no.str.cr',
-  'wss://paid.no.str.cr',
-  'wss://nostr.fly.dev',
-  'wss://relay.snort.social',
-  'wss://relay.realsearch.cc',
-  'wss://relay.nostrgraph.net',
-  'wss://relay.minds.com/nostr/v1/ws',
-  'wss://nos.lol',
-  'wss://relay.current.fyi',
-  'wss://puravida.nostr.land',
-  'wss://nostr.milou.lol',
-  'wss://eden.nostr.land',
-  'wss://relay.damus.io',
-  'wss://nostr.oxtr.dev',
-]
+// const relayFromUrls = [
+//   'wss://no.str.cr',
+//   'wss://paid.no.str.cr',
+//   'wss://nostr.fly.dev',
+//   'wss://relay.snort.social',
+//   'wss://relay.realsearch.cc',
+//   'wss://relay.nostrgraph.net',
+//   'wss://relay.minds.com/nostr/v1/ws',
+//   'wss://nos.lol',
+//   'wss://relay.current.fyi',
+//   'wss://puravida.nostr.land',
+//   'wss://nostr.milou.lol',
+//   'wss://eden.nostr.land',
+//   'wss://relay.damus.io',
+//   'wss://nostr.oxtr.dev',
+// ]
+const relayFromUrls = process.env.RELAY_FROM_URLS.split(',')
 
-const relayToUrl = 'TO_RELAY_URL'
+// const relayToUrl = 'TO_RELAY_URL'
+const relayToUrl = process.env.RELAY_TO_URL
 
 const eventsReceived = []
 
